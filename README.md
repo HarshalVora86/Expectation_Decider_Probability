@@ -1,83 +1,89 @@
-<div align="center">
+# Expectation Decider: Probability-Based Student Pass Prediction Analysis
 
-# Expectation Decider
-### Probability-Based Student Pass Prediction Analysis
-
-[![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python&logoColor=white)](https://www.python.org/)
-[![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas&logoColor=white)](https://pandas.pydata.org/)
-[![NumPy](https://img.shields.io/badge/NumPy-Numerical%20Computing-013243?logo=numpy&logoColor=white)](https://numpy.org/)
-[![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-11557C)](https://matplotlib.org/)
-[![License](https://img.shields.io/badge/License-MIT-lightgrey)](#)
-
-A probability and statistics project that analyzes student academic data to identify which factors most strongly influence the likelihood of passing a final exam.
-
-</div>
-
----
-
-## Project Overview
-
-This project uses a dataset of 200 students to study how study hours, attendance, participation in group discussions, and previous test scores relate to the probability of passing a final exam. The notebook walks through probability fundamentals and builds up to conditional probability and Bayes' Theorem to quantify these relationships.
-
-Video walkthrough: https://drive.google.com/file/d/1Fk5T5Bo4LBQqHmif8ZBcbVfNSn6pYqNz/view?usp=sharing
+A statistics/probability mini-project applying core probability theory to a student performance dataset to identify which factors are associated with passing a final exam.
 
 ## Dataset
 
-The dataset (`expectation_decider_dataset.csv`) contains 200 student records with the following columns:
+`expectation_decider_dataset.csv` — 200 students, 6 columns:
 
-- `student_id` - unique identifier for each student
-- `study_hours` - weekly study hours
-- `attendance` - class attendance percentage
-- `group_discussion` - whether the student participated in group discussions (Yes/No)
-- `previous_test_score` - score obtained in the previous test
-- `final_exam_pass` - final exam result (Pass/Fail)
+| Column | Description |
+|---|---|
+| student_id | Unique student identifier |
+| study_hours | Hours studied per week |
+| attendance | Attendance percentage |
+| group_discussion | Participated in group discussion (Yes/No) |
+| previous_test_score | Score on previous test |
+| final_exam_pass | Final exam result (Pass/Fail) |
 
-## Concepts Applied
+## Concepts Covered
 
-- **Probability Basics** - calculating the probability of an event as favourable outcomes over total outcomes, applied to compute the overall probability of passing and failing.
-- **Empirical vs. Theoretical Probability** - comparing probability derived from actual dataset observations against probability derived from logical assumptions.
-- **Random Variables and Probability Distributions** - defining a random variable for the number of students passing out of 3 randomly selected students, and computing its full probability distribution.
-- **Mean and Variance of a Random Variable** - calculating the expected value (mean) and variance of the probability distribution.
-- **Set Theory and Venn Diagrams** - using set operations to visualize the overlap between students with high study hours and students with high attendance.
-- **Contingency Tables** - cross-tabulating group discussion participation against final exam results.
-- **Joint, Marginal, and Conditional Probability** - computing joint probability of two events occurring together, marginal probability of a single event, and conditional probability of one event given another.
-- **Independent vs. Dependent Events** - testing whether group discussion participation and passing the exam are statistically independent, and identifying them as dependent events based on the data.
-- **Bayes' Theorem** - applying Bayes' Theorem to calculate the probability of passing given high attendance, using prior and conditional probabilities.
+- **Probability basics** — P(Event) = Favourable Outcomes / Total Outcomes
+- **Key terminology** — experiment, trial, outcome, sample space, event
+- **Empirical vs. theoretical probability**
+- **Random variables & probability distribution** — distribution of number of students passing out of 3 randomly selected students, with mean and variance
+- **Venn diagrams** — study hours vs. attendance overlap
+- **Contingency tables** — group discussion vs. exam result
+- **Joint, marginal, and conditional probability**
+- **Independence of events**
+- **Bayes' Theorem**
 
-## Key Findings
+## Analysis & Results
 
-- Overall probability of passing the final exam: 65%
-- Probability of passing given participation in group discussion: 81.82%
-- Group discussion participation and passing are dependent events, not independent
-- Probability of passing given high attendance (via Bayes' Theorem): 75.83%
-- 80 students satisfied both conditions of studying more than 10 hours per week and attending more than 80% of classes
+**Overall pass probability**
+P(Pass) = 130 / 200 = **65%**
 
-Based on these results, the factors most associated with a higher probability of passing are, in order of impact:
+**Probability distribution — number of students (X) passing out of 3 randomly selected**
 
-1. Group discussion participation
-2. High attendance
-3. Study hours
-4. Previous test performance
+| X | 0 | 1 | 2 | 3 |
+|---|---|---|---|---|
+| P(X) | 0.043 | 0.239 | 0.443 | 0.275 |
 
-## Tools and Libraries
+Mean E[X] = 1.95, Variance = 0.6826
 
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- matplotlib-venn
+**Venn diagram (study hours > 10/week vs. attendance > 80%)**
+- Study hours only: 25
+- Attendance only: 38
+- Both: 80
+- Neither: 57
 
-## How to Run
+**Contingency table — group discussion vs. result**
 
-1. Clone the repository
-   ```
-   git clone https://github.com/HarshalVora86/Expectation_Decider_Probability.git
-   ```
-2. Install the required libraries
-   ```
-   pip install pandas numpy matplotlib matplotlib-venn
-   ```
-3. Open `Expectation_Decider_Probability_Analysis.ipynb` in Jupyter Notebook and run the cells sequentially.
+| | Pass | Fail | Total |
+|---|---|---|---|
+| Group discussion: Yes | 90 | 20 | 110 |
+| Group discussion: No | 40 | 50 | 90 |
+| Total | 130 | 70 | 200 |
+
+- Joint probability P(Group Discussion = Yes ∩ Pass) = 90/200 = 0.45
+- Marginal probability P(Pass) = 130/200 = 0.65
+- Conditional probability P(Pass | Group Discussion = Yes) = 90/110 = 0.818 (81.8%)
+
+Since P(Pass | Group Discussion = Yes) ≠ P(Pass), group discussion and passing are **dependent events**. They are not mutually exclusive, since a student can both participate in group discussion and pass.
+
+**Bayes' Theorem**
+
+Given P(High Attendance | Pass) = 0.70, P(High Attendance | Fail) = 0.40, P(High Attendance) = 0.60, P(Pass) = 0.65:
+
+P(Pass | High Attendance) = [P(High Attendance | Pass) × P(Pass)] / P(High Attendance) = (0.70 × 0.65) / 0.60 = **0.7583 (75.83%)**
+
+## Conclusion
+
+- Overall probability of passing: 65%
+- Students who participated in group discussion: 81.82% pass probability
+- Students with high attendance: 75.83% pass probability (via Bayes' Theorem)
+- Group discussion and attendance are the strongest factors associated with passing in this dataset
+
+## Files
+
+| File | Description |
+|---|---|
+| `Expectation_Decider_Probability_Analysis_ipynb.ipynb` | Full analysis notebook (pandas, numpy, matplotlib, matplotlib_venn) |
+| `expectation_decider_dataset.csv` | Source dataset (200 records) |
+| `Expectation_Decider_Probability.pdf` | Handwritten notes covering the probability theory behind the analysis |
+
+## Tools Used
+
+Python, pandas, numpy, matplotlib, matplotlib_venn
 
 ## Author
 
