@@ -2,6 +2,10 @@
 
 A statistics/probability mini-project applying core probability theory to a student performance dataset to identify which factors are associated with passing a final exam.
 
+## Video Explanation
+
+[Watch the project walkthrough](https://drive.google.com/file/d/1Fk5T5Bo4LBQqHmif8ZBcbVfNSn6pYqNz/view?usp=sharing)
+
 ## Dataset
 
 `expectation_decider_dataset.csv` — 200 students, 6 columns:
