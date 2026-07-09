@@ -4,7 +4,7 @@ A statistics/probability mini-project applying core probability theory to a stud
 
 ## Video Explanation
 
-[Watch the project walkthrough](https://drive.google.com/file/d/1Fk5T5Bo4LBQqHmif8ZBcbVfNSn6pYqNz/view?usp=sharing)
+📹 [Watch the project walkthrough](https://drive.google.com/file/d/1Fk5T5Bo4LBQqHmif8ZBcbVfNSn6pYqNz/view?usp=sharing)
 
 ## Dataset
 
